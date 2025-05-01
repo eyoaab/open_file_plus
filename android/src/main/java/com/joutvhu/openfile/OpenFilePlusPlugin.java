@@ -965,4 +965,23 @@ public class OpenFilePlusPlugin implements FlutterPlugin, MethodCallHandler, Act
 
     @Override
     public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
-        activity = binding.getActivity
+        activity = binding.getActivity();
+        binding.addRequestPermissionsResultListener(this);
+        binding.addActivityResultListener(this);
+    }
+
+    @Override
+    public void onDetachedFromActivityForConfigChanges() {
+        // Do nothing
+    }
+
+    @Override
+    public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
+        onAttachedToActivity(binding);
+    }
+
+    @Override
+    public void onDetachedFromActivity() {
+        // Do nothing
+    }
+}
